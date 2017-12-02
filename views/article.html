@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div>
+		{% for a in article %}
+			<h1> {{ a.title }} </h1>
+			<p> {{ a.content | safe }} </p>
+		{% endfor %}
+			<h2>已有评论：</h2>
+			{% for a in reviews %}
+				<p id="pp"> {{ a.review }} </p>
+		<form role="form" method="post" action="/article" id="form1" style="display: none;">
+			 <div class="form-group">
+			    <label for="name">追加评论:</label>
+			    <textarea class="form-control" rows="3" name="review"></textarea>
+			    <button type="submit" style="width: 50px;height: 30px;background-color: red;">
+				 提 交</button>
+				 <!-- btn btn-lg btn-primary btn-block -->
+			 </div>
+		</form>
+			{% endfor %}
+		<form role="form" method="post" action="/article" id="form">
+			 <div class="form-group">
+			    <label for="name">追加评论:</label>
+			    <textarea class="form-control" rows="3" name="review"></textarea>
+			    <button type="submit" style="width: 50px;height: 30px;background-color: red;">
+				 提 交</button>
+				 <!-- btn btn-lg btn-primary btn-block -->
+			 </div>
+		</form>
+	</div>
+	<script type="text/javascript" charset="utf-8" async defer>
+	window.onload = function() {
+		$("form").submit(function() {
+			const review = this.review.value;
+			console.log("review:::", review);
+			// return false
+		});
+	}
+</script>
+{% endblock %}

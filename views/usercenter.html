@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1> 用户中心 </h1>
+<div style="width: 800px;padding: 20px;float: left;margin-left: 20px;border: 1px solid #ddd;border-radius: 8px;">
+	<form action="/users" method="post" enctype="multipart/form-data">
+	  {% if imgPath %}
+	  	<div>
+	  		<img style="max-width: 200px;float: left;" for="图片" src="{{ imgPath }}"/>
+	  		<ul style="float: left;">
+	  			{% for a in user %}
+	  				<li><a href='{{ "/article/" + a._id }}'>{{ username }}的文章：{{ a.title }}</a></li>
+	  			{% endfor %}
+			</ul>
+		</div>
+	  {% else %}
+	  <div class="form-group">
+	  	<img style="max-width: 200px;" for="图片" src="{{ imgPath1 }}"/>
+	    <label for="exampleInputEmail1">图片</label>
+	    <input type="file" name="image1" class="form-control" id="exampleInputEmail1" placeholder="Username">
+	  </div>
+	   <button  id= "submit" type="submit" class="btn btn-lg btn-primary btn-block">
+	  <i class="glyphicon glyphicon-asterisk"></i>
+	  更改头像</button>
+	  {% endif %}
+	</form>
+</div>
+<div>
+	
+</div>
+{% endblock %}
